@@ -5,6 +5,12 @@ const hole = 'O';
 const fieldCharacter = '░';
 const pathCharacter = '*';
 
+const Welcome = ('Welcome to find your hat!');
+console.log(Welcome);
+
+const height = prompt('height?')
+const width = prompt('width?')
+
 let currentlyPlaying = true;
 
 class Field {
@@ -27,25 +33,25 @@ class Field {
 
     //Retrieve user's input and move the player's cursor
     ask() {
-        let moveing = prompt('Which direction do you want to move to? (w for Up, s for down, a for left and d for right)');
+        let moveing = prompt('which way should i go?? (s for Up, x for down, z for left and c for right)');
         switch(moveing.toLowerCase()) {
-            case 'w':
-                console.log('Moving up');
+            case 's':
+                console.log('up');
                 this.y -= 1;
                 console.clear();
                 break;
-            case 's':
-                console.log('Moving down');
+            case 'x':
+                console.log('down');
                 this.y += 1;
                 console.clear();
                 break;
-            case 'a':
-                console.log('Moving left');
+            case 'z':
+                console.log('left');
                 this.x -= 1;
                 console.clear();
                 break;
-            case 'd':
-                console.log('Moving right');
+            case 'c':
+                console.log('right');
                 this.x += 1;
                 console.clear();
                 break;
@@ -63,7 +69,7 @@ class Field {
         //
         switch (this.field[this.y][this.x]) {
             case hole:
-                console.log('You lose - You fell in a hole!');
+                console.log('You lose - You fell in a hole! :( ');
                 currentlyPlaying = false;
                 break;
             case undefined:
@@ -71,7 +77,7 @@ class Field {
                 currentlyPlaying = false;
                 break;
             case hat:
-                console.log('You win - You found the hat!');
+                console.log('You win!!!! - You found the hat! :) ');
                 currentlyPlaying = false;
                 break;
             case fieldCharacter:
@@ -132,7 +138,7 @@ class Field {
 }
 
 
-const myField = new Field(Field.generateField(10,10,30));
+const myField = new Field(Field.generateField(Welcome,height,width,20));
 
 function findHatGame() {
     while(currentlyPlaying) {
@@ -140,6 +146,7 @@ function findHatGame() {
         myField.ask();
         myField.checkWin();
     }
+    console.log('Play again!!')
 }
 
 findHatGame();
